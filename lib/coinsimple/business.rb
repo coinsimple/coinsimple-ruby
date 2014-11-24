@@ -1,3 +1,7 @@
+require "hashit"
+require "http"
+require "json"
+
 module Coinsimple
   class Business
     NEW_INVOICE_URL = "https://app.coinsimple.com/api/v1/invoice"
@@ -8,7 +12,7 @@ module Coinsimple
     end
 
     def send_invoice invoice
-      options=invioce.data
+      options=invoice.data
       options[:business_id]=@business_id
       timestamp=Time.now.to_i
       hash=Hashit.sha256(timestamp,@api_key)[3..-1]
